@@ -1,0 +1,9 @@
+#!/bin/sh
+echo " Use Ctrl-c to shutdown msfweb"
+launchff(){
+	sleep 10
+	firefox-bin http://127.0.0.1:3000/
+}
+
+launchff &
+msfweb
