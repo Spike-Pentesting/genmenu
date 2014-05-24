@@ -53,7 +53,7 @@ class directoryfile:
             sys.stderr.write("Unable to open " + dest + " for writing\n")
             sys.stderr.write("Verify that you have write permissions")
             return -1
-        for x in self.Header, self.Name, self.Comment, self.Icon, self.Type:
+        for x in self.Header, self.Nam\e, self.Comment, self.Icon, self.Type:
             file.write(x + "\n")
         file.close()
 
@@ -170,7 +170,7 @@ def listpackages(pkgdir):
             packages.append(category + "/" + re.sub("-[0-9].*", "", application, 1))
     packages.sort()
     return packages
- 
+
 def settermenv():
     """This function creates the apropriate environment variable for the $E17TERM"""
     file = open(ENVDIR + "99pentoo-term" , "w")
@@ -196,7 +196,7 @@ def find_menu_entry(menu, submenu, option=None):
                 if not option == None:
                     return find_option(x.getparent(), option)
                 else:
-                    return x.getparent() 
+                    return x.getparent()
             else:
                 tmp = find_menu_entry(x, submenu, option)
                 if not tmp == None:
@@ -369,7 +369,7 @@ def genxml(root_menu, configdir):
 
 def main():
     '''
-    This program is used to generate the menu in enlightenment for the pentoo livecd
+    This program is used to generate the menu in enlightenment for the spike livecd
     '''
     if options.xfce:
         if os.path.exists(ICONDIR):
@@ -403,7 +403,7 @@ def main():
         print "Package\t\tIcon file\t\tMenu category"
 
     if options.extramenu:
-        menu = etree.parse(os.path.join(BASEDIR, "lib", "pentoo.menu"))
+        menu = etree.parse(os.path.join(BASEDIR, "lib", "spike.menu"))
     elif options.xfce:
         menu = etree.parse(os.path.join(BASEDIR, "lib", "xfce-applications.menu"))
     elif options.kde:
