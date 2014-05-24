@@ -53,7 +53,7 @@ class directoryfile:
             sys.stderr.write("Unable to open " + dest + " for writing\n")
             sys.stderr.write("Verify that you have write permissions")
             return -1
-        for x in self.Header, self.Nam\e, self.Comment, self.Icon, self.Type:
+        for x in self.Header, self.Name, self.Comment, self.Icon, self.Type:
             file.write(x + "\n")
         file.close()
 
