@@ -10,7 +10,7 @@ import sys,os,re,shutil,subprocess
 
 #from output import red, green, blue, bold
 import csv
-
+import fileinput
 from lxml import etree
 from StringIO import StringIO
 
@@ -173,7 +173,7 @@ def listpackages(pkgdir):
 
 def settermenv():
     """This function creates the apropriate environment variable for the $E17TERM"""
-    file = open(ENVDIR + "99pentoo-term" , "w")
+    file = open(ENVDIR + "99spike-term" , "w")
     file.write("P2TERM=\"" + options.p2term + "\"")
     file.newlines
     file.close()
@@ -453,6 +453,18 @@ def main():
 
         if options.extramenu:
             genxml(menu, HOME + '/.e/e/extra_menu/')
+            try:
+                for line in fileinput.input('/etc/xdg/menus/enlightenment.menu', inplace=True):
+                    if line.strip() == '<Layout>':
+                        for n,app in enumerate(open( HOME + '/.e/e/extra_menu/applications.menu', 'r')):
+                                if not n == 0:
+                                        print app
+                    print line,
+                os.remove(HOME + '/.e/e/extra_menu/applications.menu') #removes generated menu file
+            except:
+                sys.stderr.write("Unable to modify /etc/xdg/menus/enlightenment.menu \n")
+                sys.stderr.write("run as root, please!\n")
+                return -1
             directory_entry_file="Spike.directory"
             file = os.path.join(LOCALDIR, directory_entry_file)
             if not options.simulate:
